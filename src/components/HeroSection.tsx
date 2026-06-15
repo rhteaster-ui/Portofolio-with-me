@@ -5,9 +5,16 @@ import { gsap } from "gsap";
 
 export default function HeroSection({ onExploreJourney, onViewExplorations }: { onExploreJourney: () => void, onViewExplorations: () => void }) {
   const [activeScreenTab, setActiveScreenTab] = useState<"preview" | "code">("preview");
+  const roles = ["TECHNOLOGY EXPLORER", "VIBE CODER", "AI WORKFLOW BUILDER", "TERMINAL DREAMER"];
+  const [roleIdx, setRoleIdx] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
   const container3D = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const id = window.setInterval(() => setRoleIdx((v) => (v + 1) % roles.length), 1800);
+    return () => window.clearInterval(id);
+  }, []);
 
   // Mouse tilt 3D effect inside Hero using GSAP
   useEffect(() => {
@@ -126,6 +133,7 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
+              <div className="font-mono text-cyan-300 text-sm typewriter-hero mb-2">hi, im</div>
               <h1 className="text-8xl font-display font-medium text-white tracking-widest leading-none">
                 R_HMT
               </h1>
@@ -137,7 +145,7 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg font-mono font-medium text-accent-cyan uppercase tracking-widest glow-text-cyan flex items-center gap-2"
             >
-              &gt; TECHNOLOGY EXPLORER
+              &gt; {roles[roleIdx]}<span className="inline-block w-2 h-5 bg-cyan-300 ml-1 animate-pulse" />
             </motion.h2>
 
             <motion.p 
@@ -146,7 +154,7 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-sm font-sans text-zinc-400 max-w-md leading-relaxed"
             >
-              Mengeksplorasi batas teknologi lewat rasa ingin tahu, eksperimen tanpa batas, dan integrasi kecerdasan buatan dalam workflow digital modern.
+              Saya seorang pelajar MA yang mengeksplorasi batas teknologi secara otodidak&mandiri lewat rasa ingin tahu, eksperimen tanpa batas, dan integrasi kecerdasan buatan dalam workflow digital modern.
             </motion.p>
           </div>
 
@@ -263,15 +271,15 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
                           <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan block"></span>
                         </div>
                         
-                        <div className="relative aspect-[3/4] bg-neutral-900 rounded-lg overflow-hidden flex items-center justify-center">
+                        <div className="relative aspect-video bg-neutral-900 rounded-lg overflow-hidden flex items-center justify-center">
                           <img
-                            src="/gambar/dev.png"
+                            src="/gambar/pp.png"
                             onError={(e) => {
                               e.currentTarget.style.display = 'none';
                               const fallbackObj = document.getElementById("avatar-fallback-3d");
                               if (fallbackObj) fallbackObj.style.display = "flex";
                             }}
-                            alt="Mirror Portrait of R_hmt"
+                            alt="Horizontal preview portrait of R_hmt"
                             className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 transition-all duration-500"
                             referrerPolicy="no-referrer"
                           />
@@ -312,7 +320,7 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
                   /* Screen Raw Code Option */
                   <div className="w-full h-full p-6 text-zinc-300 font-mono text-xs leading-relaxed overflow-y-auto bg-black border border-zinc-900 rounded-xl select-text">
                     <p className="text-[10px] text-zinc-600 border-b border-zinc-900/60 pb-2 mb-3">// LIVE_ENVIRONMENT_DUMP</p>
-                    <p className="text-zinc-500">&gt;_ booting systems</p>
+                    <p className="text-zinc-500 typewriter-code">&gt;_ booting systems and typing ideas...</p>
                     <p className="text-[#00f2fe]">&gt; Mengaitkan model kognitif (Claude / Gemini 2.5)...</p>
                     <p className="text-zinc-400">&gt; Menghubungkan platform edge (Railway / CDN / Cloud Run)</p>
                     <p className="text-emerald-400">&gt; Semua node digital dan server terenkripsi selesai dikompilasikan.</p>
