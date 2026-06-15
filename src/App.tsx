@@ -7,7 +7,6 @@ import ExplorationsSection from "./components/ExplorationsSection";
 import AiSandbox from "./components/AiSandbox";
 import PeopleAndCommunities from "./components/PeopleAndCommunities";
 import FooterSection from "./components/FooterSection";
-import SplashScreen from "./components/SplashScreen";
 import { Sparkles, Command, Menu, X, ArrowUpRight, Cpu, HelpCircle, Layers, Workflow, Compass, Network } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { gsap } from "gsap";
@@ -140,7 +139,6 @@ export default function App() {
   return (
     <div className="canvas-global min-h-screen text-white font-sans bg-black overflow-x-hidden relative transition-colors duration-1000">
       
-      <SplashScreen />
       {/* Scroll Progress Neon indicator tracker */}
       <div className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cyan-400 via-[#00f2fe] to-blue-500 scale-x-0 scroll-progress-indicator z-50"></div>
 
@@ -243,9 +241,9 @@ export default function App() {
         <div className="py-24 max-w-5xl mx-auto px-6 scroll-anim-section relative">
           <div className="text-center space-y-3 mb-10">
             <span className="text-xs font-mono font-bold tracking-widest text-[#00f2fe] bg-cyan-950/20 border border-cyan-500/10 px-3 py-1 rounded-full uppercase">[ MULTI-PANE SANDBOX // KANVAS EKSPERIMEN ]</span>
-            <h2 className="text-5xl font-display font-medium text-white tracking-widest uppercase">MUTASI LAB CHAT</h2>
+            <h2 className="text-5xl font-display font-medium text-white tracking-widest uppercase">MUTASI LAB EXPERIMENT</h2>
             <p className="text-sm text-zinc-500 max-w-lg mx-auto leading-relaxed">
-              Chat dengan Gemini untuk bertanya tentang R_hmt: siapa dia, project apa saja, tujuan, ekosistem belajar, dan perjalanan eksplorasinya.
+              Uji coba simulasi pemikiran kognitif R_hmt serta modifikasi parameter rendering pixel gambar AI secara instan dan interaktif.
             </p>
           </div>
           <AiSandbox />
