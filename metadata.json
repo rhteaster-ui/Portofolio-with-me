@@ -1,0 +1,6 @@
+{
+  "name": "R_hmt Portfolio",
+  "description": "Interactive Technology Exploration Experience of R_hmt, a Technology Explorer and Product Builder.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
