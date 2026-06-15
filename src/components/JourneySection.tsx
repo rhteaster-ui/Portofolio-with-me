@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 export default function JourneySection() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const deckRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const getIconForStep = (phase: string) => {
     switch(phase) {
@@ -18,6 +19,27 @@ export default function JourneySection() {
       default: return <Code className="w-5 h-5" />;
     }
   };
+
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    let timer: number | undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        timer = window.setInterval(() => {
+          setSelectedIdx((prev) => (prev + 1) % JOURNEY_STEPS.length);
+        }, 2600);
+      } else if (timer) {
+        window.clearInterval(timer);
+      }
+    }, { threshold: 0.35 });
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      if (timer) window.clearInterval(timer);
+    };
+  }, []);
 
   // GSAP 3D Card sweep trigger on active index change
   useEffect(() => {
@@ -39,7 +61,7 @@ export default function JourneySection() {
   };
 
   return (
-    <section id="journey" className="py-32 px-6 select-none bg-transparent min-h-screen flex flex-col justify-center relative overflow-hidden">
+    <section ref={sectionRef} id="journey" className="py-32 px-6 select-none bg-transparent min-h-screen flex flex-col justify-center relative overflow-hidden">
       
       {/* 3D background grids / depth nodes */}
       <div className="absolute top-0 right-10 w-96 h-96 bg-accent-cyan/2 rounded-full blur-[100px] pointer-events-none"></div>
@@ -61,7 +83,7 @@ export default function JourneySection() {
           
           {/* Left Column: Visual Step Indicators (Vertical Node Map) */}
           <div className="lg:col-span-5 space-y-3">
-            <span className="text-[10px] font-mono text-zinc-650 tracking-widest uppercase block mb-2 px-1">SELECT NODE PATHWAY:</span>
+            <span className="text-[10px] font-mono text-zinc-650 tracking-widest uppercase block mb-2 px-1">AUTO SCROLL NODE PATHWAY:</span>
             <div className="relative pl-6 space-y-2.5 border-l border-zinc-900/60">
               
               {/* Dynamic Connecting Active Line */}

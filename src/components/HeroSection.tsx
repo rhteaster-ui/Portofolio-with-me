@@ -1,7 +1,48 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowDown, CornerDownRight, Laptop, Play, Terminal, Eye, Code, ExternalLink, Sparkles, RefreshCw, Layers } from "lucide-react";
+import { ArrowDown, Play, Terminal, Eye, Code } from "lucide-react";
 import { motion } from "motion/react";
 import { gsap } from "gsap";
+
+function useTypingLoop(words: string[], typeSpeed = 70, deleteSpeed = 34, hold = 1300) {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [text, setText] = useState("");
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const word = words[wordIndex];
+    const timeout = window.setTimeout(() => {
+      if (!deleting && text.length < word.length) {
+        setText(word.slice(0, text.length + 1));
+        return;
+      }
+      if (!deleting && text.length === word.length) {
+        setDeleting(true);
+        return;
+      }
+      if (deleting && text.length > 0) {
+        setText(word.slice(0, text.length - 1));
+        return;
+      }
+      setDeleting(false);
+      setWordIndex((idx) => (idx + 1) % words.length);
+    }, !deleting && text.length === word.length ? hold : deleting ? deleteSpeed : typeSpeed);
+
+    return () => window.clearTimeout(timeout);
+  }, [words, wordIndex, text, deleting, typeSpeed, deleteSpeed, hold]);
+
+  return text;
+}
+
+function TypeLoopLabel() {
+  const text = useTypingLoop([
+    "Technology explorer",
+    "vibe coder",
+    "pelajar MA otodidak",
+    "AI workflow builder",
+    "web experiment shipper"
+  ]);
+  return <span>&gt; {text}<span className="animate-pulse">_</span></span>;
+}
 
 export default function HeroSection({ onExploreJourney, onViewExplorations }: { onExploreJourney: () => void, onViewExplorations: () => void }) {
   const [activeScreenTab, setActiveScreenTab] = useState<"preview" | "code">("preview");
@@ -126,6 +167,7 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
+              <div className="font-mono text-sm text-zinc-400 tracking-widest uppercase mb-2">hi, im</div>
               <h1 className="text-8xl font-display font-medium text-white tracking-widest leading-none">
                 R_HMT
               </h1>
@@ -137,7 +179,7 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg font-mono font-medium text-accent-cyan uppercase tracking-widest glow-text-cyan flex items-center gap-2"
             >
-              &gt; TECHNOLOGY EXPLORER
+              <TypeLoopLabel />
             </motion.h2>
 
             <motion.p 
@@ -146,7 +188,7 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-sm font-sans text-zinc-400 max-w-md leading-relaxed"
             >
-              Mengeksplorasi batas teknologi lewat rasa ingin tahu, eksperimen tanpa batas, dan integrasi kecerdasan buatan dalam workflow digital modern.
+              Saya seorang pelajar MA yang mengeksplorasi batas teknologi secara otodidak & mandiri lewat rasa ingin tahu, eksperimen tanpa batas, dan integrasi kecerdasan buatan dalam workflow digital modern.
             </motion.p>
           </div>
 
@@ -259,19 +301,19 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
                       <div className="w-full max-w-[195px] rounded-xl bg-zinc-900/40 border border-zinc-800 p-1 pb-2 flex flex-col shadow-2xl relative select-none">
                         
                         <div className="flex justify-between items-center px-2 py-1 border-b border-zinc-950 mb-1">
-                          <span className="text-[7.5px] font-mono text-zinc-500">CAMERA_MIRROR // IMG_04.PNG</span>
+                          <span className="text-[7.5px] font-mono text-zinc-500">PP_PREVIEW // PP.PNG</span>
                           <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan block"></span>
                         </div>
                         
-                        <div className="relative aspect-[3/4] bg-neutral-900 rounded-lg overflow-hidden flex items-center justify-center">
+                        <div className="relative aspect-video bg-neutral-900 rounded-lg overflow-hidden flex items-center justify-center">
                           <img
-                            src="/gambar/dev.png"
+                            src="/gambar/pp.png"
                             onError={(e) => {
                               e.currentTarget.style.display = 'none';
                               const fallbackObj = document.getElementById("avatar-fallback-3d");
                               if (fallbackObj) fallbackObj.style.display = "flex";
                             }}
-                            alt="Mirror Portrait of R_hmt"
+                            alt="Preview horizontal R_hmt"
                             className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 transition-all duration-500"
                             referrerPolicy="no-referrer"
                           />
@@ -313,12 +355,12 @@ export default function HeroSection({ onExploreJourney, onViewExplorations }: { 
                   <div className="w-full h-full p-6 text-zinc-300 font-mono text-xs leading-relaxed overflow-y-auto bg-black border border-zinc-900 rounded-xl select-text">
                     <p className="text-[10px] text-zinc-600 border-b border-zinc-900/60 pb-2 mb-3">// LIVE_ENVIRONMENT_DUMP</p>
                     <p className="text-zinc-500">&gt;_ booting systems</p>
-                    <p className="text-[#00f2fe]">&gt; Mengaitkan model kognitif (Claude / Gemini 2.5)...</p>
+                    <p className="text-[#00f2fe]">&gt; Mengetik workflow terminal: pelajar MA, otodidak, mandiri...</p>
                     <p className="text-zinc-400">&gt; Menghubungkan platform edge (Railway / CDN / Cloud Run)</p>
-                    <p className="text-emerald-400">&gt; Semua node digital dan server terenkripsi selesai dikompilasikan.</p>
+                    <p className="text-emerald-400">&gt; Code engine aktif: project live, AI tools, dan community hub tersinkronisasi.</p>
                     <div className="bg-zinc-950/60 p-4 border border-zinc-900 rounded-lg mt-4">
                       <p className="text-xs text-zinc-100 leading-relaxed font-sans italic">
-                        "Saya tidak berusaha untuk langsung menguasai semua jenis teknologi secara brutal. Saya mencari pemahaman mendalam tentang bagaimana teknologi itu saling terkoneksi. Dan bagaimana menggunakannya secara bijak untuk menghasilkan karya nyata."
+                        "Saya tidak berusaha menguasai seluruh teknologi yang ada. Saya lebih tertarik memahami bagaimana teknologi saling terhubung, bagaimana sebuah ide dapat diwujudkan, dan bagaimana rasa penasaran bisa berubah menjadi sesuatu yang nyata."
                       </p>
                     </div>
                   </div>

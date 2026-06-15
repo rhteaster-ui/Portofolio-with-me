@@ -169,7 +169,7 @@ export default function EcosystemSection() {
                     }}
                     className={`absolute w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer z-10 p-1 ${active ? "bg-black border border-accent-cyan shadow-[0_0_15px_rgba(0,242,254,0.4)] scale-115" : "bg-zinc-950 border border-zinc-900 shadow-md hover:border-zinc-700 hover:scale-105"}`}
                   >
-                    {getToolIcon(item.iconName, active)}
+                    {item.iconUrl ? <img src={item.iconUrl} alt={item.name} className={`w-7 h-7 object-contain rounded-md transition-all duration-300 ${active ? "scale-110" : "grayscale opacity-75"}`} referrerPolicy="no-referrer" /> : getToolIcon(item.iconName, active)}
                   </button>
                 );
               })}
@@ -194,7 +194,7 @@ export default function EcosystemSection() {
 
                     <div className="flex items-center gap-3 mb-3">
                       <div className={`p-2.5 rounded-xl border leading-none ${isHovered ? "bg-[#4facfe]/10 border-[#4facfe]/20 text-white" : "bg-black border-zinc-900 text-zinc-650"}`}>
-                        {getToolIcon(item.iconName, isHovered)}
+                        {item.iconUrl ? <img src={item.iconUrl} alt={item.name} className={`w-7 h-7 object-contain rounded-md transition-all duration-300 ${isHovered ? "scale-110" : "grayscale opacity-75"}`} referrerPolicy="no-referrer" /> : getToolIcon(item.iconName, isHovered)}
                       </div>
                       <h4 className="text-sm font-display font-medium text-white tracking-wide">{item.name}</h4>
                     </div>

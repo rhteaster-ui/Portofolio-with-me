@@ -67,7 +67,7 @@ export default function ExplorationsSection() {
             <span className="text-xs font-mono font-bold tracking-widest text-[#00f2fe] bg-cyan-950/20 border border-cyan-500/10 px-3.5 py-1.5 rounded-full uppercase">[ PORTFOLIO 3D MATRIX // INTERAKTIF DECK ]</span>
             <h2 className="text-5xl font-display font-medium text-white tracking-widest uppercase">LABORATORIUM KARYA // PORTFOLIO</h2>
             <p className="text-sm text-zinc-500 max-w-lg font-sans leading-relaxed">
-              Klik proyek background di kanan/kiri untuk memutar deck, klik bagian tengah untuk merobek kode, membelah arsitektur, dan membedah studi kasus mendalam.
+              Klik proyek background di kanan/kiri untuk memutar deck, klik bagian tengah untuk melihat detail lalu kunjungi web live project. Geser kiri/kanan terasa lebih halus seperti deck terminal.
             </p>
           </div>
 
@@ -130,8 +130,17 @@ export default function ExplorationsSection() {
                 {currentProj && (
                   <motion.div
                     layoutId="active-project-card"
+                    key={currentProj.id}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.18}
+                    onDragEnd={(_, info) => { if (info.offset.x < -70) handleNext(); if (info.offset.x > 70) handlePrev(); }}
                     onClick={() => setSelectedProject(currentProj)}
-                    className="absolute w-[95%] sm:w-[70%] md:w-[460px] h-[410px] z-30 select-none cursor-pointer"
+                    initial={{ opacity: 0, x: 80, scale: 0.96, rotateY: -8 }}
+                    animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }}
+                    exit={{ opacity: 0, x: -80, scale: 0.96, rotateY: 8 }}
+                    transition={{ type: "spring", stiffness: 115, damping: 22, mass: 0.9 }}
+                    className="absolute w-[95%] sm:w-[70%] md:w-[460px] h-[410px] z-30 select-none cursor-grab active:cursor-grabbing"
                     style={{
                       transform: "translateX(0px) rotateY(0deg) scale(1) translateZ(50px)",
                       transformStyle: "preserve-3d"
@@ -187,7 +196,7 @@ export default function ExplorationsSection() {
 
                       {/* Interaction link trigger */}
                       <div className="pt-5 border-t border-zinc-900/60 mt-4 flex justify-between items-center text-[10px] font-mono text-zinc-500">
-                        <span className="font-bold tracking-widest uppercase text-cyan-400/80 group-hover/card:text-[#00f2fe] transition-colors">[ KLIK UNTUK MEMBEDAH KODE ]</span>
+                        <span className="font-bold tracking-widest uppercase text-cyan-400/80 group-hover/card:text-[#00f2fe] transition-colors">[ KLIK DETAIL / KUNJUNGI WEB ]</span>
                         <div className="w-6 h-6 rounded-full border border-cyan-500/20 flex items-center justify-center bg-cyan-950/10">
                           <ArrowUpRight className="w-3.5 h-3.5 text-[#00f2fe]" />
                         </div>
@@ -267,9 +276,9 @@ export default function ExplorationsSection() {
 
                 {/* Technical System Status Matrix block */}
                 <div className="text-[10px] font-mono text-zinc-550 flex items-center gap-4 bg-[#03080e]/20 border border-cyan-500/5 px-4 py-2 rounded-xl">
-                  <span>ORBIT_SWAP: <span className="text-cyan-400">ACTIVE</span></span>
+                  <span>SMOOTH_DRAG: <span className="text-cyan-400">ACTIVE</span></span>
                   <span className="text-zinc-800">|</span>
-                  <span>MATRIX_DEPTH: <span className="text-cyan-400">3D_PERSPECTIVE</span></span>
+                  <span>MATRIX_DEPTH: <span className="text-cyan-400">LIVE_WEB_DECK</span></span>
                   <span className="text-zinc-800">|</span>
                   <span>RENDER_ANGLE: <span className="text-cyan-400">Y_28deg</span></span>
                 </div>
@@ -374,7 +383,7 @@ export default function ExplorationsSection() {
                       rel="noopener noreferrer"
                       className="px-6 py-3 rounded-xl text-xs font-mono bg-white text-black hover:bg-accent-cyan hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all uppercase tracking-widest font-bold inline-flex items-center gap-2"
                     >
-                      Buka Aplikasi <ExternalLink className="w-4 h-4" />
+                      Kunjungi Web <ExternalLink className="w-4 h-4" />
                     </a>
                   ) : (
                     <span className="px-6 py-3 rounded-xl text-xs font-mono bg-zinc-950 text-zinc-500 border border-zinc-900 uppercase tracking-widest select-none">
