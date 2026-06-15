@@ -100,6 +100,18 @@ export const PROJECTS: Project[] = [
     outcome: "Boosts developer experimentation velocity tenfold by removing boilerplate repository housekeeping tasks.",
     ecosystem: ["GitHub API", "React", "OAuth 2.0", "Tailwind CSS"]
   },
+
+  {
+    id: "fake-loby-ml",
+    name: "Fake Loby ML",
+    category: "Utilities",
+    url: "https://fake-loby-ml-nine.vercel.app/",
+    description: "HTML canvas module untuk membuat screenshot lobby ML bergaya mockup secara cepat.",
+    problem: "Membuat mockup lobby game manual memakan waktu dan sulit konsisten.",
+    exploration: "Menggunakan HTML Canvas untuk menyusun elemen visual, layout, dan export screenshot langsung dari browser.",
+    outcome: "Menjadi eksplorasi visual cepat untuk kebutuhan fake lobby, demo UI, dan eksperimen canvas.",
+    ecosystem: ["HTML Canvas", "React", "Vite", "CSS"]
+  },
   {
     id: "quickfake",
     name: "QuickFake",
@@ -136,98 +148,46 @@ export const PROJECTS: Project[] = [
 ];
 
 export const JOURNEY_STEPS: JourneyStep[] = [
-  {
-    phase: "Curiosity",
-    title: "The Genesis of Curiosity",
-    subtitle: "Asking 'Why' and 'How'",
-    description: "The journey began not by writing code, but by questioning how local systems interact, breaking open custom configurations, and wondering how beautiful software is built.",
-    techKeywords: ["Web Protocols", "System Inspection", "File Exploration", "UI Dissection"]
-  },
-  {
-    phase: "Learning",
-    title: "Foundations & Structural Systems",
-    subtitle: "Cracking the Script",
-    description: "Dived headfirst into programming logic. Mastered the core structures of JavaScript, Node.js, and browser layout systems. Learned how bits and components are rendered efficiently.",
-    techKeywords: ["JavaScript", "Node.js", "CSS Box Model", "Async Pipelines"]
-  },
-  {
-    phase: "Exploration",
-    title: "The AI Revolution",
-    subtitle: "New Cognitive Dimensions",
-    description: "Evolved workflows by integrating cognitive AI agents. Replaced manual boilerplate generation with high-level architectural co-piloting. Learned to treat AI not as a cheat sheet, but as an expansion of cognitive agency.",
-    techKeywords: ["LLM Orchestration", "Prompt Engineering", "V0 & Lovable", "Google AI Studio"]
-  },
-  {
-    phase: "Experimentation",
-    title: "Building Micro-Utilities",
-    subtitle: "High-Speed Iterative Loops",
-    description: "Built dozens of functional micro-tools. Tested layouts, network responses, and specialized APIs. Created screenshot renderers, operator analytical utilities, and crop diagnostic pipelines.",
-    techKeywords: ["Serverless Hooks", "Chromium Puppeteer", "Regular Expression Engines", "Vision Language Models"]
-  },
-  {
-    phase: "Building",
-    title: "Independent Product Builder",
-    subtitle: "Delivering Finished Products",
-    description: "Currently shipping polished, consumer-facing digital ecosystems. Combining rapid AI collaboration, durable servers, and luxurious design frameworks to create stunning modern experiences.",
-    techKeywords: ["Full-Stack Express", "Vite Bundles", "Vector Visualizers", "Cloud Ingress Routing"]
-  }
+  { phase: "Curiosity", title: "Awal Rasa Penasaran", subtitle: "Kenapa bisa jalan?", description: "Perjalanan dimulai dari rasa penasaran: membongkar alur aplikasi, memahami file, mencoba terminal, dan bertanya bagaimana ide kecil bisa menjadi produk nyata.", techKeywords: ["Web Protocols", "System Inspection", "File Exploration", "UI Dissection"] },
+  { phase: "Learning", title: "Fondasi Mandiri", subtitle: "Belajar otodidak", description: "Mulai menyusun logika JavaScript, Node.js, dan CSS. Tidak semuanya langsung paham, tapi setiap error menjadi catatan belajar dan latihan problem solving.", techKeywords: ["JavaScript", "Node.js", "CSS Box Model", "Async Pipelines"] },
+  { phase: "Exploration", title: "AI Sebagai Partner", subtitle: "Human + AI workflow", description: "AI dipakai sebagai partner eksplorasi: membantu riset, membaca pola, merapikan struktur, dan mempercepat eksperimen tanpa menghilangkan keputusan manusia.", techKeywords: ["LLM Orchestration", "Prompt Engineering", "v0 & Lovable", "Google AI Studio"] },
+  { phase: "Experimentation", title: "Micro-Utilities Lab", subtitle: "Build, test, ulang", description: "Membangun banyak tools kecil seperti screenshot renderer, cek kartu, analisis tanaman, sampai image pipeline. Fokusnya bukan sempurna dulu, tapi membuat ide bisa diuji.", techKeywords: ["Serverless Hooks", "Chromium Puppeteer", "RegEx Engines", "Vision Models"] },
+  { phase: "Building", title: "Produk Digital Mandiri", subtitle: "Ship & improve", description: "Sekarang fokus mengemas eksperimen menjadi pengalaman web yang lebih rapi, cepat, dan berguna: deployed, dibagikan, lalu terus diperbaiki.", techKeywords: ["Full-Stack Express", "Vite Bundles", "Cloud Routing", "Iterative UX"] }
 ];
 
+const logos = {
+  chatgpt: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/chatgpt-icon.png", claude: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/1/anthropic-icon-wii9u8ifrjrd99btrqfgi.png/anthropic-icon-tdvkiqisswbrmtkiygb0ia.png?_a=DATAiZAAZAA0", gemini: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Google_Gemini_icon_2025.svg/1280px-Google_Gemini_icon_2025.svg.png", deepseek: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1GcM2cT29bqcJU1_O_IPmQQJ5ZXexPGd5Kv0kioZzMg&s=10", kimi: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfFO7L1gGJljIRoshBEr92dIfLRH22LqtE8A&s", qwen: "https://img.alicdn.com/imgextra/i4/O1CN01ZJvdT71cRmc77GWnr_!!6000000003597-2-tps-96-96.png", copilot: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-copilot-icon.png", lovable: "https://lovable.dev/img/logo/lovable-logo-icon.svg", v0: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/vercel-v0-icon.png", devin: "https://pixello.co.in/wp-content/uploads/2025/11/devin-ai-logo.webp", studio: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyw5a8alX1q3kxvsetQvhjfYxAFbrT2_1TdhhG-zZ6sQ&s=10", railway: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/railway-infrastructure-platform-icon.png", netlify: "https://images.seeklogo.com/logo-png/47/3/netlify-icon-logo-png_seeklogo-477950.png", github: "https://cdn-icons-png.flaticon.com/512/25/25231.png", reqable: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTqQDReO8nJyvLg33Ak-uzHz6lmkrV-jvoWqO_E9LjAA&s=10" };
+
 export const ECOSYSTEM: EcosystemGroup[] = [
-  {
-    category: "AI Tools",
-    items: [
-      { name: "ChatGPT", description: "General problem solving & mental model verification", iconName: "MessageSquareCode" },
-      { name: "Claude", description: "Complex system architecture & structured refactoring", iconName: "Workflow" },
-      { name: "Gemini", description: "Multi-modal vision analysis & reasoning pipelines", iconName: "Sparkles" },
-      { name: "DeepSeek", description: "High-speed functional testing and query reasoning", iconName: "Brain" },
-      { name: "Kimi", description: "Long-context review and file structural synthesis", iconName: "FileSpreadsheet" },
-      { name: "Qwen", description: "Diverse bilingual technical reference evaluation", iconName: "Globe" }
-    ]
-  },
-  {
-    category: "Builders",
-    items: [
-      { name: "Copilot", description: "Seamless in-editor syntactic tab completions", iconName: "Terminal" },
-      { name: "Codex", description: "Low-level system script formulation helper", iconName: "Code" },
-      { name: "Lovable", description: "Rapid visual client prototyping interface", iconName: "Layout" },
-      { name: "v0", description: "Component-focused design generation tool", iconName: "Layers" },
-      { name: "Google AI Studio", description: "Direct developer API control & model testing", iconName: "Cpu" },
-      { name: "Devin", description: "Multi-step complex engineering agent simulation", iconName: "Binary" }
-    ]
-  },
-  {
-    category: "Infrastructure",
-    items: [
-      { name: "Railway", description: "Instant Docker deployment & DB hosting", iconName: "Cloud" },
-      { name: "Supabase", description: "PostgreSQL databases & real-time listeners", iconName: "Database" },
-      { name: "Netlify", description: "Fast CDN edge delivery for client apps", iconName: "Globe" }
-    ]
-  },
-  {
-    category: "Environment",
-    items: [
-      { name: "GitHub", description: "Version control, automated actions, and repositories", iconName: "Github" },
-      { name: "Termux", description: "On-the-go Linux system console controls", iconName: "Command" },
-      { name: "Reqable", description: "Network inspection & REST API debugging proxy", iconName: "Activity" }
-    ]
-  }
+  { category: "AI Tools", items: ["ChatGPT","Claude","Gemini","DeepSeek","Kimi","Qwen"].map((name, i) => ({ name, description: ["Riset, ide, dan validasi solusi.","Arsitektur dan refactor kompleks.","Vision, reasoning, dan eksperimen multimodal.","Testing cepat dan reasoning query.","Long-context review untuk struktur file.","Referensi bilingual dan evaluasi teknis."][i], iconName: "Sparkles", logo: [logos.chatgpt,logos.claude,logos.gemini,logos.deepseek,logos.kimi,logos.qwen][i] })) },
+  { category: "Builders", items: [
+    { name: "GitHub Copilot", description: "Autocomplete coding di editor.", iconName: "Code", logo: logos.copilot }, { name: "Lovable", description: "Prototype visual cepat.", iconName: "Layout", logo: logos.lovable }, { name: "v0", description: "Generate komponen UI.", iconName: "Layers", logo: logos.v0 }, { name: "Devin", description: "Agent engineering multi-step.", iconName: "Terminal", logo: logos.devin }, { name: "Google AI Studio", description: "Eksperimen API dan model.", iconName: "Cpu", logo: logos.studio }
+  ] },
+  { category: "Infrastructure", items: [
+    { name: "Railway", description: "Deploy backend dan service cepat.", iconName: "Cloud", logo: logos.railway }, { name: "Supabase", description: "Database Postgres dan realtime.", iconName: "Database" }, { name: "Netlify", description: "Hosting statis/CDN.", iconName: "Globe", logo: logos.netlify }, { name: "Vercel", description: "Edge deploy untuk web app.", iconName: "Globe", logo: logos.v0 }, { name: "Infinity", description: "Eksperimen hosting dan workflow.", iconName: "Zap" }
+  ] },
+  { category: "Environment", items: [
+    { name: "GitHub", description: "Repo, versioning, dan kolaborasi.", iconName: "Github", logo: logos.github }, { name: "Termux", description: "Terminal Linux mobile.", iconName: "Command" }, { name: "Reqable", description: "Debugging API/network.", iconName: "Activity", logo: logos.reqable }
+  ] }
 ];
 
 export const PEOPLE: Person[] = [
-  { name: "SHADOWNEX", handle: "SHADOWNEX", avatar: "Shadow.png", role: "Creative Advisor & Builder" },
-  { name: "hmmodzvip", handle: "hmmodzvip", avatar: "Hmmodz.png", role: "Independent System Experimenter" },
-  { name: "iboyCloud", handle: "iboyCloud", avatar: "Reiz.png", role: "Infrastructure Architect" },
-  { name: "reiz_riz", handle: "reiz_riz", avatar: "Reiz.png", role: "Co-Developer & Animator" },
-  { name: "Zakrenz", handle: "Zakrenz", avatar: "Zakrenz.png", role: "UX / UI Design Specialist" },
-  { name: "Ditzzx", handle: "Ditzzx", avatar: "Ramadhan.png", role: "DevOps & Core Maintainer" },
-  { name: "Ramadhan Store", handle: "Ramadhan Store", avatar: "Ramadhan.png", role: "Distribution Lead & Partner" }
+  { name: "SHADOWNEX", handle: "SHADOWNEX", avatar: "Shadow.png", role: "Creative Advisor & Builder", socials: [{type:"github",label:"GitHub",url:"https://github.com/Shadownex293"},{type:"telegram",label:"Telegram",url:"https://t.me/Shadownex2"},{type:"channel",label:"WhatsApp Channel",url:"https://whatsapp.com/channel/0029Vb8Lge5FHWq3fTan4V0J"}] },
+  { name: "hmmodzvip", handle: "hmmodzvip", avatar: "Hmmodz.png", role: "Independent System Experimenter", socials: [{type:"github",label:"GitHub",url:"https://github.com/hmmodzvip"},{type:"tiktok",label:"TikTok",url:"https://www.tiktok.com/@hmmodzvip"},{type:"email",label:"Email",url:"mailto:serverhmmodz@gmail.com"}] },
+  { name: "iboyCloud", handle: "iboyCloud", role: "Infrastructure Architect", socials: [{type:"github",label:"GitHub",url:"https://github.com/iboycloud"},{type:"tiktok",label:"TikTok",url:"https://www.tiktok.com/@xiao_bayu"}] },
+  { name: "reiz_riz", handle: "reiz_riz", avatar: "Reiz.png", role: "Co-Developer & Animator", socials: [{type:"github",label:"GitHub",url:"https://github.com/rixz-dev"}] },
+  { name: "Zakrenz", handle: "Zakrenz", avatar: "Zakrenz.png", role: "UX / UI Design Specialist", socials: [{type:"github",label:"GitHub",url:"https://github.com/Zakrenzdev"},{type:"tiktok",label:"TikTok",url:"https://www.tiktok.com/@zakrenzreal"}] },
+  { name: "Ditzzx", handle: "Ditzzx", role: "Channel Partner", socials: [{type:"channel",label:"WhatsApp Channel",url:"https://whatsapp.com/channel/0029Vb6GMVNGehERPKx21D20"}] },
+  { name: "Ramadhan Store", handle: "Ramadhan Store", role: "Distribution Lead", socials: [{type:"whatsapp",label:"WhatsApp",url:"https://wa.me/62895423189495"}] },
+  { name: "Tenkz", handle: "Tenkxzz", avatar: "Tenkz.png", role: "Builder & Social Connector", socials: [{type:"channel",label:"Channel",url:"https://whatsapp.com/channel/0029VbC13UP1CYoODnULpp3E"},{type:"github",label:"GitHub",url:"https://github.com/Tenkxzz"},{type:"instagram",label:"Instagram",url:"https://instagram.com/main.pyc"}] },
+  { name: "Thxyz404", handle: "Thxyz404", avatar: "Thx.png", role: "Community Connector", socials: [{type:"channel",label:"Channel",url:"https://whatsapp.com/channel/0029Vb8CC8WKLaHqU9bbrN2Z"},{type:"tiktok",label:"TikTok",url:"https://www.tiktok.com/@thxyzz404"},{type:"telegram",label:"Telegram",url:"https://t.me/Gunawan076w"}] }
 ];
 
 export const COMMUNITIES: Community[] = [
-  { name: "COMMUNITY", title: "BELAJAR CODING & BAHAS ANIME", tagline: "Belajar Coding & Bahas Anime", image: "Communty.png" },
-  { name: "Scrape Collection", title: "SCRAPE COLLECTION", tagline: "Aggregated scripts, raw data structures, and automation bots", image: "Scrape.png" },
-  { name: "Promosi Tools", title: "PROMOSI TOOLS", tagline: "Promotional pipelines and interactive distribution systems", image: "Promosi.png" },
-  { name: "Promosi v2", title: "PROMOSI V2", tagline: "Next-generation user outreach, interactive forms, and logs", image: "Promosiv2.png" },
-  { name: "Bots Lab", title: "BOTS LAB", tagline: "Automated chat bots, workflow scripts, and system alerts", image: "Bots.png" }
+  { name: "COMMUNITY", title: "COMMUNITY", tagline: "Belajar Coding & Bahas Anime", image: "Coding.png", url: "https://chat.whatsapp.com/GJrFX9GSOJiBLyJmJNNixi" },
+  { name: "BELAJAR CODING&BAHAS ANIME", title: "BELAJAR CODING & BAHAS ANIME", tagline: "Ruang belajar coding, ngobrol anime, dan sharing progres.", image: "Coding.png", url: "https://chat.whatsapp.com/Dfl4xKPiJoAH01YtWTlB97" },
+  { name: "Scrape Collection", title: "SCRAPE COLLECTION", tagline: "Koleksi scrape, bot, data mentah, dan automation snippets.", image: "Scrape.png", url: "https://chat.whatsapp.com/BfxkoBVqORL2GIJ3SZh1Lk" },
+  { name: "Promosi", title: "PROMOSI", tagline: "Kanal promosi project, store, dan distribusi karya.", image: "Promosi.png", url: "https://chat.whatsapp.com/HxMqke18m0OBh8uQ8Hezth" },
+  { name: "Promosi v2", title: "PROMOSI V2", tagline: "Versi lanjutan untuk outreach dan promosi komunitas.", image: "Promosiv2.png", url: "https://chat.whatsapp.com/CKBpfDlQICEL6OoDyiHIj3" },
+  { name: "Bots Lab", title: "BOTS LAB", tagline: "Eksperimen bot, workflow chat, dan sistem otomatis.", image: "Bots.png", status: "Waiting Link" }
 ];

@@ -19,6 +19,13 @@ export default function JourneySection() {
     }
   };
 
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setSelectedIdx((prev) => (prev + 1) % JOURNEY_STEPS.length);
+    }, 3200);
+    return () => window.clearInterval(id);
+  }, []);
+
   // GSAP 3D Card sweep trigger on active index change
   useEffect(() => {
     if (!deckRef.current) return;
@@ -61,7 +68,7 @@ export default function JourneySection() {
           
           {/* Left Column: Visual Step Indicators (Vertical Node Map) */}
           <div className="lg:col-span-5 space-y-3">
-            <span className="text-[10px] font-mono text-zinc-650 tracking-widest uppercase block mb-2 px-1">SELECT NODE PATHWAY:</span>
+            <span className="text-[10px] font-mono text-zinc-650 tracking-widest uppercase block mb-2 px-1">AUTO NODE PATHWAY:</span>
             <div className="relative pl-6 space-y-2.5 border-l border-zinc-900/60">
               
               {/* Dynamic Connecting Active Line */}
