@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { PEOPLE, COMMUNITIES } from "../data";
 import { Person, Community } from "../types";
 import { Github, Users, HelpCircle, MessageSquare, ArrowUpRight, Zap, Target } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { gsap } from "gsap";
 
 export default function PeopleAndCommunities() {
@@ -20,7 +20,7 @@ export default function PeopleAndCommunities() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {PEOPLE.map((p, i) => (
               <div key={p.name} className="w-full">
                 <InteractivePersonCard person={p} index={i} />
@@ -57,7 +57,6 @@ export default function PeopleAndCommunities() {
 function InteractivePersonCard({ person, index }: { person: Person; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [displayText, setDisplayText] = useState(person.role);
-  const [open, setOpen] = useState(false);
   const isHovered = useRef(false);
 
   // High-Tech Scrambling/Decrypting interactive animation
@@ -143,7 +142,6 @@ function InteractivePersonCard({ person, index }: { person: Person; index: numbe
       onMouseMove={handleMouseMove}
       onMouseEnter={triggerDecrypt}
       onMouseLeave={handleMouseLeave}
-      onClick={() => setOpen(true)}
       className="glow-card-blue bg-[#01060b]/80 rounded-2xl border border-cyan-500/15 p-5 flex flex-col items-center text-center relative overflow-hidden select-none cursor-pointer group min-h-[300px] shadow-[0_15px_30px_rgba(0,0,0,0.6)]"
       style={{ transformStyle: "preserve-3d" }}
     >
@@ -160,7 +158,7 @@ function InteractivePersonCard({ person, index }: { person: Person; index: numbe
       <div className="relative mb-4 mt-2" style={{ transform: "translateZ(35px)" }}>
         <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#001c2b] to-[#010408] border border-cyan-500/30 flex items-center justify-center overflow-hidden shadow-[0_0_20px_rgba(0,242,254,0.15)] group-hover:border-cyan-400 transition-colors duration-450">
           <img
-            src={person.avatarUrl || `/gambar/${person.avatar || "pp-dev.png"}`}
+            src={`/gambar/${person.avatar}`}
             onError={(e) => {
               e.currentTarget.style.display = 'none';
               const fallbackId = `person-avatar-3d-${index}`;
@@ -192,46 +190,15 @@ function InteractivePersonCard({ person, index }: { person: Person; index: numbe
         <span className="text-[9px] font-mono text-cyan-550/80 tracking-widest block">@{person.handle}</span>
       </div>
       
+      {/* Live Decrypt Role Display panel */}
       <div 
         className="text-[10px] text-zinc-300 font-mono mt-5 w-full leading-relaxed bg-[#030a12]/95 px-3.5 py-2.5 rounded-xl border border-cyan-500/10 min-h-[58px] flex items-center justify-center transition-all duration-300 group-hover:border-cyan-500/25 group-hover:bg-[#04101e]/80"
         style={{ transform: "translateZ(15px)" }}
       >
-        <span className="tracking-wide">Klik card untuk detail social link</span>
+        <span className="tracking-wide">
+          {displayText}
+        </span>
       </div>
-
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
-            onClick={(e) => { e.stopPropagation(); setOpen(false); }}
-          >
-            <motion.div
-              initial={{ scale: 0.92, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.92, y: 20 }}
-              className="w-full max-w-sm rounded-3xl bg-[#05080d] border border-cyan-500/20 p-6 text-center shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img src={person.avatarUrl || `/gambar/${person.avatar || "pp-dev.png"}`} alt={person.name} className="w-24 h-24 mx-auto rounded-full object-cover border border-cyan-500/30 mb-4" referrerPolicy="no-referrer" />
-              <h3 className="text-xl font-display text-white tracking-wider">{person.name}</h3>
-              <p className="text-xs font-mono text-zinc-500 mb-5">@{person.handle}</p>
-              <p className="text-xs text-zinc-400 mb-5">{person.role}</p>
-              <div className="flex flex-wrap justify-center gap-3">
-                {person.socials.map((social) => (
-                  <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl border border-zinc-800 bg-black/50 flex items-center justify-center hover:border-cyan-400 transition-all" title={social.label}>
-                    <img src={social.iconUrl} alt={social.label} className="w-6 h-6 object-contain" referrerPolicy="no-referrer" />
-                  </a>
-                ))}
-              </div>
-              <button onClick={() => setOpen(false)} className="mt-6 px-4 py-2 rounded-xl bg-zinc-900 text-xs font-mono text-zinc-300">Tutup</button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Node status data metric bar */}
       <div className="w-full pt-3 mt-4 border-t border-zinc-900/40 flex justify-between items-center text-[8px] font-mono text-zinc-650" style={{ transform: "translateZ(8px)" }}>
@@ -287,7 +254,6 @@ function InteractiveCommunityCard({ community, idx }: { community: Community; id
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      onClick={() => community.url && window.open(community.url, "_blank", "noopener,noreferrer")}
       className="glow-card-cyan bg-zinc-950/20 border border-zinc-900 p-8 flex flex-col justify-between overflow-hidden relative group select-none cursor-pointer rounded-2xl min-h-[290px]"
       style={{ transformStyle: "preserve-3d" }}
     >
@@ -312,7 +278,7 @@ function InteractiveCommunityCard({ community, idx }: { community: Community; id
       </div>
 
       <div className="pt-6 border-t border-zinc-900/60 mt-6 flex justify-between items-center text-[9px] font-mono text-zinc-600">
-        <span className="uppercase tracking-widest">{community.status || "Buka WhatsApp Hub"}</span>
+        <span className="uppercase tracking-widest">Sandi Hub Afiliasi</span>
         <ArrowUpRight className="w-4 h-4 text-zinc-650 group-hover:text-accent-cyan group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
       </div>
     </div>

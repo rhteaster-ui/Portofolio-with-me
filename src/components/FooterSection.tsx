@@ -33,7 +33,7 @@ export default function FooterSection() {
           
           <blockquote className="space-y-4">
             <p className="text-2xl sm:text-3xl font-display font-medium text-zinc-100 tracking-wide leading-relaxed">
-              "Saya tidak berusaha menguasai seluruh teknologi yang ada. Saya lebih tertarik memahami bagaimana teknologi saling terhubung, bagaimana sebuah ide dapat diwujudkan, dan bagaimana rasa penasaran bisa berubah menjadi sesuatu yang nyata. Bagi saya, setiap project bukan sekadar hasil akhir, melainkan bagian dari proses eksplorasi yang terus berjalan."
+              "Saya tidak berusaha untuk langsung menguasai seluruh aspek rekayasa secara brutal. Saya mencari pemahaman mendalam tentang bagaimana teknologi saling terhubung, lalu menggunakannya secara fungsional untuk menciptakan karya yang nyata."
             </p>
             <cite className="text-xs font-mono text-zinc-500 not-italic block mt-4">— R_HMT // TECHNOLOGY EXPLORER</cite>
           </blockquote>
