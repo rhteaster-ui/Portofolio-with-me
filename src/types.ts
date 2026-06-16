@@ -24,23 +24,14 @@ export interface EcosystemGroup {
     name: string;
     description: string;
     iconName: string;
-    iconUrl?: string;
   }[];
-}
-
-export interface SocialLink {
-  label: string;
-  url: string;
-  iconUrl: string;
 }
 
 export interface Person {
   name: string;
   handle: string;
-  avatar?: string;
-  avatarUrl?: string;
+  avatar: string; // fallback if image fails, let's make neat custom visual references
   role: string;
-  socials: SocialLink[];
 }
 
 export interface Community {
@@ -49,5 +40,4 @@ export interface Community {
   tagline: string;
   image: string;
   url?: string;
-  status?: string;
 }
